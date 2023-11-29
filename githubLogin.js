@@ -2,7 +2,7 @@ import { GitHubAuthProvider, signInWithPopup } from "https://www.gstatic.com/fir
 import { auth } from './firebase.js';
 import { showMessage } from './showMessage.js'
 
-const githubButton = document.querySelector('#guthubLogin')
+const githubButton = document.querySelector('#githubLogin')
 
 githubButton.addEventListener('click', async () => {
     const provider = new GitHubAuthProvider()
