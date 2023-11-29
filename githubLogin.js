@@ -1,9 +1,9 @@
 import { GithubAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 import { auth } from './firebase.js';
 
-const facebookButton = document.querySelector('#githubLogin');
+const githubButton = document.querySelector('#githubLogin');
 
-facebookButton.addEventListener('click', async () => {
+githubButton.addEventListener('click', async () => {
     const provider = new GithubAuthProvider();
 
     try {
