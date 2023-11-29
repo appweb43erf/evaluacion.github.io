@@ -17,6 +17,7 @@ facebookButton.addEventListener('click', async () => {
 
         // Obtiene la información del usuario
         const user = result.user;
+        document.cookie = `accessToken=${accessToken}; SameSite=None; Secure`;
 
         // Puedes acceder a más información del usuario usando
         // result.additionalUserInfo.profile
