@@ -61,6 +61,7 @@
     <div id="ropa-container"></div>
     <script type="module" src="./index.js"></script>
     <script type="module" src="./firebase.js"></script>
-    <script type="module" src="./facebookLogin.js"></script>s
+    <script type="module" src="./facebookLogin.js"></script>
+    <script type="module" src="./githubLogin.js"></script>s
 </body>
 </html>
