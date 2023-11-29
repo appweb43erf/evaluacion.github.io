@@ -1,38 +1,66 @@
-import { GithubAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-import { auth } from './firebase.js';
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ropa</title>
+    <!--
+    Carga el núcleo de Firebase
+    JS SDK
+  -->
+  <script
+  src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js">
+  </script>
+<!--
+  Agrega el manejo de
+  autenticación.
+-->
+<script
+  src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js">
+  </script>
+<!--
+  Agrega el manejo de bases de
+  datos.
+-->
+<script
+  src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js">
+  </script>
+<!--
+  Configura la app usando la
+  información del sitio de
+  Firebase.
+-->
 
-const githubButton = document.querySelector('#githubLogin');
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Ropa</h1>
+        <form id="task-form">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="task-nombre" required>
 
-githubButton.addEventListener('click', async () => {
-    const provider = new GithubAuthProvider();
+            <label for="tipo">Tipo:</label>
+            <input type="text" id="task-tipo" required>
 
-    try {
-        const result = await signInWithPopup(auth, provider);
-        const credentials = GithubAuthProvider.credentialFromResult(result);
-        const accessToken = credentials.accessToken;
+            <label for="color">Color:</label>
+            <input type="text" id="task-color" required>
 
-        // Obtiene la información del usuario
-        const user = result.user;
+            <label for="talla">Talla:</label>
+            <input type="text" id="task-talla" required>
 
-        // Puedes acceder a más información del usuario usando
-        // result.additionalUserInfo.profile
-
-        console.log(user);
-        console.log(accessToken);
-
-        // Cierra el modal después de iniciar sesión
-        const modal = new bootstrap.Modal(document.querySelector('#signinModal'));
-        modal.hide();
-    } catch (error) {
-        if (error.code === 'auth/cancelled-popup-request') {
-            // El usuario canceló la solicitud del popup
-            console.log('Solicitud de popup cancelada por el usuario');
-        } else if (error.code === 'auth/popup-closed-by-user') {
-            // El usuario cerró el popup
-            console.log('Popup cerrado por el usuario');
-        } else {
-            // Otro error, imprímelo en la consola
-            console.error(error);
-        }
-    }
-});
+            <label for="fechaFabricacion">Fecha de Fabricación:</label>
+            <input type="date" id="task-fechaFabricacion" required>
+            <button id="btn-ropa-save">Guardar</button>
+            <button type="button" id="facebookLogin" class="btn btn-ropa-save">Iniciar sesión con Facebook</button>
+            <button type="button" id="githubLogin" class="btn btn-dark">Iniciar sesion con GitHub</button>
+        </form>
+        <br><br><br>
+        <div id="ropa-container"></div>
+    </div>
+    <div id="ropa-container"></div>
+    <script type="module" src="./index.js"></script>
+    <script type="module" src="./firebase.js"></script>
+    <script type="module" src="./facebookLogin.js"></script>s
+</body>
+</html>
