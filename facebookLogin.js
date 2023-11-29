@@ -4,10 +4,14 @@ import { auth } from './firebase.js';
 const facebookButton = document.querySelector('#facebookLogin');
 
 facebookButton.addEventListener('click', async () => {
+    console.log('Iniciando sesión con Facebook...');
+
     const provider = new FacebookAuthProvider();
 
     try {
         const result = await signInWithPopup(auth, provider);
+        console.log('Inicio de sesión exitoso:', result);
+
         const credentials = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credentials.accessToken;
 
@@ -24,15 +28,6 @@ facebookButton.addEventListener('click', async () => {
         const modal = new bootstrap.Modal(document.querySelector('#signinModal'));
         modal.hide();
     } catch (error) {
-        if (error.code === 'auth/cancelled-popup-request') {
-            // El usuario canceló la solicitud del popup
-            console.log('Solicitud de popup cancelada por el usuario');
-        } else if (error.code === 'auth/popup-closed-by-user') {
-            // El usuario cerró el popup
-            console.log('Popup cerrado por el usuario');
-        } else {
-            // Otro error, imprímelo en la consola
-            console.error(error);
-        }
+        console.error('Error durante el inicio de sesión:', error);
     }
 });
