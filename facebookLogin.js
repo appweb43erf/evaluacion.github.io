@@ -24,6 +24,15 @@ facebookButton.addEventListener('click', async () => {
         const modal = new bootstrap.Modal(document.querySelector('#signinModal'));
         modal.hide();
     } catch (error) {
-        console.error(error);
+        if (error.code === 'auth/cancelled-popup-request') {
+            // El usuario canceló la solicitud del popup
+            console.log('Solicitud de popup cancelada por el usuario');
+        } else if (error.code === 'auth/popup-closed-by-user') {
+            // El usuario cerró el popup
+            console.log('Popup cerrado por el usuario');
+        } else {
+            // Otro error, imprímelo en la consola
+            console.error(error);
+        }
     }
 });
