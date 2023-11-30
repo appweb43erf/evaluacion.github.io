@@ -1,34 +1,39 @@
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-import { getRopaById } from "./firebase.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import { getRopas } from "./firebase.js";
 
-const userNameSpan = document.getElementById('user-name');
-const userTypeSpan = document.getElementById('user-type');
-const userColorSpan = document.getElementById('user-color');
-const userTallaSpan = document.getElementById('user-talla');
-const userFechaSpan = document.getElementById('user-fecha');
-const backToLoginButton = document.getElementById('backToLogin');
+const auth = getAuth();
 
-// Escucha los cambios en la autenticación
-onAuthStateChanged(auth, async (user) => {
-    if (user) {
-        // Usuario autenticado, obtén sus datos
-        const doc = await getRopaById(user.uid);
-        const ropa = doc.data();
-
-        // Muestra los datos en la página
-        userNameSpan.innerText = ropa.nombre;
-        userTypeSpan.innerText = ropa.tipo;
-        userColorSpan.innerText = ropa.color;
-        userTallaSpan.innerText = ropa.talla;
-        userFechaSpan.innerText = ropa.fecha;
-    } else {
-        // No hay usuario autenticado, redirige al inicio de sesión
-        window.location.href = "IniciaSesion.html";
-    }
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // El usuario está autenticado, puedes mostrar los datos
+    // o realizar otras operaciones aquí
+    showUserData();
+  } else {
+    // El usuario no está autenticado, puedes redirigirlo a la página de inicio de sesión
+    window.location.href = "index.html";
+  }
 });
 
-// Agrega un evento de clic al botón de volver a iniciar sesión
-backToLoginButton.addEventListener('click', () => {
-    // Redirige al usuario a la página de inicio de sesión
-    window.location.href = "IniciaSesion.html";
-});
+function showUserData() {
+  const ropaContainer = document.getElementById("user-container");
+
+  getRopas().then((querySnapshot) => {
+    let html = "";
+
+    querySnapshot.forEach((doc) => {
+      const ropa = doc.data();
+      console.log(doc.id);
+      html += `
+        <div>
+          <p>Nombre: ${ropa.nombre}</p>
+          <p>Tipo: ${ropa.tipo}</p>
+          <p>Color: ${ropa.color}</p>
+          <p>Talla: ${ropa.talla}</p>
+          <p>Fecha de Fabricación: ${ropa.fecha}</p>
+        </div>
+      `;
+    });
+
+    ropaContainer.innerHTML = html;
+  });
+}
