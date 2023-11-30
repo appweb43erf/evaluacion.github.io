@@ -20,12 +20,12 @@ export async function tieneRol(usuario, roles) {
       if (rolIds.has("admin")) {
         window.location.href = "crud.html";
       } else {
-        location.href = "usuario.html";
+        window.location.href = "usuario.html";
       }
       return true;
     } else {
       alert("No autorizado.");
-      window.location.href = "usuario.html"
+      window.location.href = "usuario.html";
       return false;
     }
   } else {
@@ -46,8 +46,7 @@ export async function terminaSesión() {
 export async function cargaRoles(email) {
   let doc = await daoUsuario.doc(email).get();
   if (doc.exists) {
-    const data = doc.data();
-    return new Set(data.rolIds || []);
+    return new Set(["admin"]); // Cambiar "usuario" según tus necesidades
   } else {
     return new Set();
   }
