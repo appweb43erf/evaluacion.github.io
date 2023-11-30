@@ -1,91 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicia Sesión</title>
-    <script
-    src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js">
-    </script>
-  <!--
-    Agrega el manejo de
-    autenticación.
-  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicia Sesión</title>
   <script
-    src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js">
-    </script>
-  <!--
-    Agrega el manejo de bases de
-    datos.
-  -->
-  <script
-    src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js">
-    </script>
-  <!--
-    Configura la app usando la
-    información del sitio de
-    Firebase.
-  -->
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha384-rzPTGT3Eh5XfyoZrZDjZcXVV2D6tI2kaLzYFo6d2PK5tAQU+oq4lBBF2tn1a9a6C" crossorigin="anonymous">
-  
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-gc0fSAtnhOCWJRmJKb0t9UqrsqMl1feE6K8BoiRdXLl6U5Pyh3fGtFQ8UnDUnwE" crossorigin="anonymous"></script>
-  
-  
-    <style>
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f8f9fa;
-        }
+  src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js">
+  </script>
+<!--
+  Agrega el manejo de
+  autenticación.
+-->
+<script
+  src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js">
+  </script>
+<!--
+  Agrega el manejo de bases de
+  datos.
+-->
+<script
+  src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js">
+  </script>
+<!--
+  Configura la app usando la
+  información del sitio de
+  Firebase.
+-->
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha384-rzPTGT3Eh5XfyoZrZDjZcXVV2D6tI2kaLzYFo6d2PK5tAQU+oq4lBBF2tn1a9a6C" crossorigin="anonymous">
 
-        #login-container {
-            text-align: center;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-        }
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-gc0fSAtnhOCWJRmJKb0t9UqrsqMl1feE6K8BoiRdXLl6U5Pyh3fGtFQ8UnDUnwE" crossorigin="anonymous"></script>
 
-        #login-container h2 {
-            color: #007bff;
-            font-size: 24px; /* Ajusta el tamaño del texto */
-        }
 
-        #login-container button {
-            margin: 10px;
-            font-size: 18px; /* Ajusta el tamaño del texto de los botones */
-            padding: 15px 30px; /* Ajusta el tamaño de los botones */
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        #googleLogin {
-            background-color: rgba(176, 244, 66, 0.91);
-            border-color: #4285f4;
-        }
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: sans-serif;
+    }
 
-        #facebookLogin {
-            background-color: #1a58dd;
-            border-color: #3b5998;
-        }
+    #login-container {
+      width: 400px;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
 
-        #githubLogin {
-            background-color: #9e1717;
-            border-color: #333;
-        }
-    </style>
+    #login-container h2 {
+      text-align: center;
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: block;
+      margin: 10px 0;
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0069d9;
+    }
+  </style>
 </head>
 <body>
-    <div id="login-container">
-        <h2>Inicia Sesión</h2>
-        <button id="googleLogin" class="btn btn-primary">Iniciar sesión con Google</button>
-        <button id="facebookLogin" class="btn btn-primary">Iniciar sesión con Facebook</button>
-        <button id="githubLogin" class="btn btn-primary">Iniciar sesión con GitHub</button>
-    </div>
+  <div id="login-container">
+    <h2>Inicia Sesión</h2>
 
+    <button class="btn btn-primary" id="googleLogin">Iniciar sesión con Google</button>
+    <button class="btn btn-primary" id="facebookLogin">Iniciar sesión con Facebook</button>
+    <button class="btn btn-primary" id="githubLogin">Iniciar sesión con GitHub</button>
+
+    <p style="margin-top: 20px; text-align: center;">¿No tienes una cuenta? <a href="#">Regístrate</a></p>
+  </div>
+  
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-gc0fSAtnhOCWJRmJKb0t9UqrsqMl1feE6K8BoiRdXLl6U5Pyh3fGtFQ8UnDUnwE" crossorigin="anonymous"></script>
 
@@ -100,6 +112,5 @@
     <script type="module" src="./seguridad.js"></script>
     <script type="module" src="./lib/fabrica.js"></script>
     <script type="module" src="./lib/tiposFire.js"></script>
-    <script type="module" src="./googleLoginn.js"></script>
 </body>
 </html>
