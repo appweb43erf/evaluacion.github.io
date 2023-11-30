@@ -21,8 +21,8 @@ githubButton.addEventListener('click', async () => {
         console.log(accessToken);
 
         // Cierra el modal después de iniciar sesión
-        const modal = new bootstrap.Modal(document.querySelector('#signinModal'));
-        modal.hide();
+    
+        window.location.href = "Usuario.html";
         
     } catch (error) {
         if (error.code === 'auth/cancelled-popup-request') {

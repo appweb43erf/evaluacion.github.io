@@ -27,9 +27,8 @@ googleButton.addEventListener('click', async () => {
         console.log(user);
         console.log(accessToken);
 
+        window.location.href = "Usuario.html";
         // Cierra el modal después de iniciar sesión
-        const modal = new bootstrap.Modal(document.querySelector('#signinModal'));
-        modal.hide();
     } catch (error) {
         // Maneja los errores específicos de la autenticación de Google
         if (error.code === 'auth/cancelled-popup-request') {

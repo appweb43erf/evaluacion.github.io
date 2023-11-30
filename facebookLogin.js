@@ -25,9 +25,8 @@ facebookButton.addEventListener('click', async () => {
         console.log(user);
         console.log(accessToken);
 
-        // Cierra el modal después de iniciar sesión
-        const modal = new bootstrap.Modal(document.querySelector('#signinModal'));
-        modal.hide();
+        window.location.href = "Usuario.html";
+        
     } catch (error) {
         console.error('Error durante el inicio de sesión:', error);
     }
