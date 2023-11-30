@@ -1,3 +1,7 @@
+import { } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { } from "https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js";
+import { } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+import { } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-functions.js";  
 import { getAuth, getFirestore } from "../lib/fabrica.js";
 import { muestraError } from "../lib/util.js";
 
