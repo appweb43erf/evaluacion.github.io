@@ -9,23 +9,43 @@ let editRopaId = null;
 
 window.addEventListener("DOMContentLoaded", async () => {
   onGetRopas((querySnapshot) => {
-    let html = "";
+    let html = `
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Color</th>
+            <th scope="col">Talla</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
 
     querySnapshot.forEach((doc) => {
       const ropa = doc.data();
       console.log(doc.id);
       html += `
-        <div>
-          <p>${ropa.nombre}</p>
-          <p>${ropa.tipo}</p>
-          <p>${ropa.color}</p>
-          <p>${ropa.talla}</p>
-          <p>${ropa.fecha}</p>
-          <button class='btn-delete' data-id='${doc.id}'>Borrar</button>
-          <button class='btn-edit' data-id='${doc.id}'>Editar</button>
-        </div>
+        <tr>
+          <td>${ropa.nombre}</td>
+          <td>${ropa.tipo}</td>
+          <td>${ropa.color}</td>
+          <td>${ropa.talla}</td>
+          <td>${ropa.fecha}</td>
+          <td>
+            <button class='btn-delete' data-id='${doc.id}'>Borrar</button>
+            <button class='btn-edit' data-id='${doc.id}'>Editar</button>
+          </td>
+        </tr>
       `;
     });
+
+    html += `
+        </tbody>
+      </table>
+    `;
 
     ropaContainer.innerHTML = html;
 
