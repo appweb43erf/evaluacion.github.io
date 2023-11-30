@@ -58,9 +58,17 @@
             <label for="fechaFabricacion">Fecha de Fabricación:</label>
             <input type="date" id="task-fechaFabricacion" required>
             <button id="btn-ropa-save">Guardar</button>
-            <button type="button" id="facebookLogin" class="btn btn-ropa-save">Iniciar sesión con Facebook</button>
-            <button type="button" id="githubLogin" class="btn btn-ropa-save">Iniciar sesion con GitHub</button>
-            <button type="button" id="googleLogin" class="btn btn-ropa-save">Iniciar sesion con Google</button>
+            <button type="button" id="usuario" class="btn btn-ropa-save">Usuario</button>
+            <script>
+         
+              var botonUsuario = document.getElementById('usuario');
+          
+          
+              botonUsuario.addEventListener('click', function() {
+      
+                  window.location.href = 'Usuario.html';
+              });
+          </script>
         </form>
         <br><br><br>
         <div id="ropa-container"></div>
