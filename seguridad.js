@@ -18,14 +18,14 @@ export async function tieneRol(usuario, roles) {
     if (roles.some(rol => rolIds.has(rol))) {
       // Redirige al usuario según su rol
       if (rolIds.has("admin")) {
-        location.href = "crud.html";
+        window.location.href = "crud.html";
       } else {
         location.href = "usuario.html";
       }
       return true;
     } else {
       alert("No autorizado.");
-      location.href = "index.html";
+      window.location.href = "usuario.html"
       return false;
     }
   } else {
