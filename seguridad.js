@@ -5,32 +5,41 @@ const firestore = getFirestore();
 const daoUsuario = firestore.collection("Usuario");
 
 export async function iniciaSesión() {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  provider.setCustomParameters({ prompt: "select_account" });
-  await getAuth().signInWithRedirect(provider);
+  try {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: "select_account" });
+    await getAuth().signInWithRedirect(provider);
+  } catch (error) {
+    muestraError(error);
+  }
 }
 
 export async function tieneRol(usuario, roles) {
-  if (usuario && usuario.email) {
-    const rolIds = await cargaRoles(usuario.email);
+  try {
+    if (usuario && usuario.email) {
+      const rolIds = await cargaRoles(usuario.email);
 
-    // Verifica si el conjunto de roles incluye "admin" o "usuario"
-    if (roles.some(rol => rolIds.has(rol))) {
-      // Redirige al usuario según su rol
-      if (rolIds.has("admin")) {
-        window.location.href = "crud.html";
+      // Verifica si el conjunto de roles incluye "admin" o "usuario"
+      if (roles.some(rol => rolIds.has(rol))) {
+        // Redirige al usuario según su rol
+        if (rolIds.has("admin")) {
+          window.location.href = "crud.html";
+        } else {
+          window.location.href = "usuario.html";
+        }
+        return true;
       } else {
+        alert("No autorizado.");
         window.location.href = "usuario.html";
+        return false;
       }
-      return true;
     } else {
-      alert("No autorizado.");
-      window.location.href = "usuario.html";
+      // Si no hay usuario o correo, inicia sesión
+      await iniciaSesión();
       return false;
     }
-  } else {
-    // Si no hay usuario o correo, inicia sesión
-    iniciaSesión();
+  } catch (error) {
+    muestraError(error);
     return false;
   }
 }
@@ -38,16 +47,22 @@ export async function tieneRol(usuario, roles) {
 export async function terminaSesión() {
   try {
     await getAuth().signOut();
-  } catch (e) {
-    muestraError(e);
+  } catch (error) {
+    muestraError(error);
   }
 }
 
 export async function cargaRoles(email) {
-  let doc = await daoUsuario.doc(email).get();
-  if (doc.exists) {
-    return new Set(["admin"]); // Cambiar "usuario" según tus necesidades
-  } else {
+  try {
+    const doc = await daoUsuario.doc(email).get();
+    if (doc.exists) {
+      const data = doc.data();
+      return new Set(data.rolIds || []);
+    } else {
+      return new Set();
+    }
+  } catch (error) {
+    muestraError(error);
     return new Set();
   }
 }
