@@ -1,5 +1,5 @@
 import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-import { auth } from './firebase.js'; // 
+import { auth } from './firebase.js'; 
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(user);
             console.log(accessToken);
   
-            window.location.href = "crud.html";
+            window.location.href = "crud.html"
             // Cierra el modal después de iniciar sesión
         } catch (error) {
             // Maneja los errores específicos de la autenticación de Google
