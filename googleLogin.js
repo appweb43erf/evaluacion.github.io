@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(user);
             console.log(accessToken);
   
-            window.location.href = "Usuario.html";
+         
             // Cierra el modal después de iniciar sesión
         } catch (error) {
             // Maneja los errores específicos de la autenticación de Google
