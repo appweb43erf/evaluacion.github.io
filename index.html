@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ropa</title>
+    <title>Inicia Sesión</title>
     <!--
     Carga el núcleo de Firebase
     JS SDK
@@ -37,40 +37,45 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-gc0fSAtnhOCWJRmJKb0t9UqrsqMl1feE6K8BoiRdXLl6U5Pyh3fGtFQ8UnDUnwE" crossorigin="anonymous"></script>
 
 
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
+
+        #login-container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        #login-container button {
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div id="app">
-        <h1>Ropa</h1>
-        <form id="task-form">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="task-nombre" required>
-
-            <label for="tipo">Tipo:</label>
-            <input type="text" id="task-tipo" required>
-
-            <label for="color">Color:</label>
-            <input type="text" id="task-color" required>
-
-            <label for="talla">Talla:</label>
-            <input type="text" id="task-talla" required>
-
-            <label for="fechaFabricacion">Fecha de Fabricación:</label>
-            <input type="date" id="task-fechaFabricacion" required>
-            <button id="btn-ropa-save">Guardar</button>
-            <button type="button" id="facebookLogin" class="btn btn-ropa-save">Iniciar sesión con Facebook</button>
-            <button type="button" id="githubLogin" class="btn btn-ropa-save">Iniciar sesion con GitHub</button>
-            <button type="button" id="googleLogin" class="btn btn-ropa-save">Iniciar sesion con Google</button>
-        </form>
-        <br><br><br>
-        <div id="ropa-container"></div>
+    <div id="login-container">
+        <h2>Inicia Sesión</h2>
+        <button id="googleLogin" class="btn btn-primary">Iniciar sesión con Google</button>
+        <button id="facebookLogin" class="btn btn-primary">Iniciar sesión con Facebook</button>
+        <button id="githubLogin" class="btn btn-primary">Iniciar sesión con GitHub</button>
     </div>
-    <div id="ropa-container"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-gc0fSAtnhOCWJRmJKb0t9UqrsqMl1feE6K8BoiRdXLl6U5Pyh3fGtFQ8UnDUnwE" crossorigin="anonymous"></script>
+
+    <!-- Agrega los scripts para la autenticación con Google, Facebook y GitHub -->
     <script type="module" src="./index.js"></script>
     <script type="module" src="./firebase.js"></script>
     <script type="module" src="./facebookLogin.js"></script>
     <script type="module" src="./githubLogin.js"></script>
     <script type="module" src="./googleLogin.js"></script>
-
 </body>
 </html>
