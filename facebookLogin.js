@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(user);
             console.log(accessToken);
   
-            window.location.href = "Usuario.html";
+            window.location.href = "crud.html"
             
         } catch (error) {
             console.error('Error durante el inicio de sesión:', error);

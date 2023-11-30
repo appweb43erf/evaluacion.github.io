@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(accessToken);
   
             // Cierra el modal después de iniciar sesión
-            window.location.href = "Usuario.html";
+            window.location.href = "crud.html"
   
         } catch (error) {
             if (error.code === 'auth/cancelled-popup-request') {
